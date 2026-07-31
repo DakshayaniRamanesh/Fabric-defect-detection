@@ -1,0 +1,41 @@
+# Dataset directory
+CO5420 Fabric/
+CO5420 Fabric
+
+# Submissions and generated data outputs
+submission*.csv
+submission*
+*.csv
+
+# Python Byte-code and Cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+*-checkpoint.ipynb
+
+# Model Weights and Artifacts
+*.pth
+*.pt
+*.bin
+*.onnx
+*.h5
+*.pkl
+*.joblib
+
+# Environments
+.venv/
+venv/
+env/
+ENV/
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
