@@ -17,7 +17,7 @@ __pycache__/
 .ipynb_checkpoints/
 *-checkpoint.ipynb
 
-# Model Weights and Artifacts
+# Model Weights and Large Binary Artifacts (Tracked locally or via LFS)
 *.pth
 *.pt
 *.bin
@@ -25,6 +25,10 @@ __pycache__/
 *.h5
 *.pkl
 *.joblib
+
+# Explicitly ensure visual documentation outputs & reports are tracked
+!outputs/figures/*
+!docs/*
 
 # Environments
 .venv/

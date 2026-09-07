@@ -1,4 +1,4 @@
-﻿"""
+"""
 qualitative_comparison.py
 =========================
 Generates a research-poster-quality qualitative comparison figure across the
@@ -52,16 +52,29 @@ except Exception:
 warnings.filterwarnings("ignore")
 
 # ── PATHS ────────────────────────────────────────────────────────────────────
-SCRIPT_DIR  = os.path.dirname(os.path.abspath(__file__))
-DATA_ROOT   = os.path.join(SCRIPT_DIR, "CO5420 Fabric")
-OUTPUTS_DIR = os.path.join(SCRIPT_DIR, "outputs")
-SAVE_PATH   = os.path.join(SCRIPT_DIR, "qualitative_comparison_poster.png")
+SCRIPT_DIR   = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(SCRIPT_DIR) if os.path.basename(SCRIPT_DIR) == "scripts" else SCRIPT_DIR
+DATA_ROOT    = os.path.join(PROJECT_ROOT, "CO5420 Fabric")
+OUTPUTS_DIR  = os.path.join(PROJECT_ROOT, "outputs")
+FIGURES_DIR  = os.path.join(OUTPUTS_DIR, "figures")
+MODELS_DIR   = os.path.join(OUTPUTS_DIR, "models")
+os.makedirs(FIGURES_DIR, exist_ok=True)
+os.makedirs(MODELS_DIR, exist_ok=True)
 
-ART_ENSEMBLE = os.path.join(OUTPUTS_DIR, "ensemble_model.pkl")
-ART_SELECTOR = os.path.join(OUTPUTS_DIR, "selector.pkl")
-ART_SCALER   = os.path.join(OUTPUTS_DIR, "scaler.pkl")
-ART_AE       = os.path.join(OUTPUTS_DIR, "fabric_ae_best.pth")
-ART_UNET     = os.path.join(OUTPUTS_DIR, "unet_model.pth")
+SAVE_PATH    = os.path.join(FIGURES_DIR, "qualitative_comparison_poster.png")
+
+def _find_artifact(filename):
+    for loc in [MODELS_DIR, OUTPUTS_DIR, PROJECT_ROOT]:
+        cand = os.path.join(loc, filename)
+        if os.path.exists(cand):
+            return cand
+    return os.path.join(MODELS_DIR, filename)
+
+ART_ENSEMBLE = _find_artifact("ensemble_model.pkl")
+ART_SELECTOR = _find_artifact("selector.pkl")
+ART_SCALER   = _find_artifact("scaler.pkl")
+ART_AE       = _find_artifact("fabric_ae_best.pth")
+ART_UNET     = _find_artifact("unet_model.pth")
 
 TARGET_H, TARGET_W = 128, 512
 
